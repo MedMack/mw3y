@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ARSS</title>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-  <meta charset="utf-8"/>
-  <style type="text/css">
-  * {
-  	margin: 0;
-  	padding: 0;
-  }
-  #container {
-  	position: absolute;
-  	left: 0;
-  	top: 0;
-  	bottom: 0;
-  	right: 0;
-  	overflow: hidden;
-  }
-  </style>
+<title>ARSS</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<meta charset="utf-8"/>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+#container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+}
+</style>
 </head>
 <body>
-	<div id="container"></div>
-	<script type="text/javascript" src="js/awe-loader-min.js"></script>
-	<!-- <script type="text/javascript" src="spacedisp.js"></script> -->
-  <script type="text/javascript">
+<div id="container"></div>
+<script type="text/javascript" src="lib/js/awe-loader-min.js"></script>
+<script type="text/javascript">
   window.addEventListener('load', function() {
     // initialize awe after page loads
     window.awe.init({
@@ -48,9 +47,9 @@
           {
             capabilities: ['gum','gyro','webgl'],
             files: [
-              [ 'js/awe-standard-dependencies.js', 'js/awe-standard.js' ], // core dependencies for this app
-              'js/awe-standard-window_resized.js', // window resize handling plugin
-              'js/awe-standard-object_clicked.js', // object click/tap handling plugin
+              [ 'lib/js/awe-standard-dependencies.js', 'lib/js/awe-standard.js' ], // core dependencies for this app
+              'lib/js/awe-standard-window_resized.js', // window resize handling plugin
+              'lib/js/awe-standard-object_clicked.js', // object click/tap handling plugin
               'awe.geo_ar.js', // geo ar plugin
             ],
             success: function() {
@@ -68,6 +67,7 @@
                 document.body.innerHTML = '<p>This demo currently requires a standards compliant Android browser (e.g. Chrome M33).</p>';
                 return;
               }
+
               // setup and paint the scene
 			        window.awe.setup_scene();
 
@@ -84,6 +84,7 @@
                   where:{ id:e.detail.projection_id }
                 });
               }, false);
+
 			        // add some points of interest (poi) for each of the compass points
 			        awe.pois.add({ id:'north', position: { x:0, y:0, z:200 } });
 			        awe.pois.add({ id:'north_east', position: { x:200, y:0, z:200 } });
@@ -104,6 +105,7 @@
 			            color:0xFF0000,
 			          },
 			        }, { poi_id: 'north' });
+
 			        awe.projections.add({
 			          id:'ne',
 			          geometry:{ shape:'sphere', radius:10 },
@@ -112,6 +114,7 @@
 			            color:0xCCCCCC,
 			          },
 			        }, { poi_id: 'north_east' });
+
 			        awe.projections.add({
 			          id:'e',
 			          geometry:{ shape:'cube', x:50, y:50, z:50 },
@@ -121,6 +124,7 @@
 			            color:0x00FF00,
 			          },
 			        }, { poi_id: 'east' });
+
 			        awe.projections.add({
 			          id:'se',
 			          geometry:{ shape:'sphere', radius:10 },
@@ -129,6 +133,7 @@
 			            color:0xCCCCCC,
 			          },
 			        }, { poi_id: 'south_east' });
+
 			        awe.projections.add({
 			          id:'s',
 			          geometry:{ shape:'cube', x:50, y:50, z:50 },
@@ -138,6 +143,7 @@
 			            color:0xFFFFFF,
 			          },
 			        }, { poi_id: 'south' });
+
 			        awe.projections.add({
 			          id:'sw',
 			          geometry:{ shape:'sphere', radius:10 },
@@ -146,6 +152,7 @@
 			            color:0xCCCCCC,
 			          },
 			        }, { poi_id: 'south_west' });
+
 			        awe.projections.add({
 			          id:'w',
 			          geometry:{ shape:'cube', x:50, y:50, z:50 },
@@ -155,6 +162,7 @@
 			            color:0x0000FF,
 			          },
 			        }, { poi_id: 'west' });
+
 			        awe.projections.add({
 			          id:'nw',
 			          geometry:{ shape:'sphere', radius:10 },
