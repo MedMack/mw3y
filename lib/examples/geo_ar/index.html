@@ -88,6 +88,8 @@
 							// add some points of interest (poi) for each of the compass points
 			        awe.pois.add({ id:'north', position: { x:0, y:0, z:200 } });
               awe.pois.add({ id:'south', position: { x:0, y:0, z:-200 } });
+							// add moon POI
+							awe.pois.add({ id:'moonPOI', position: {x:50, y:50, z:100 } });
 
 			        /* keeping only north and south
               awe.pois.add({ id:'north_east', position: { x:200, y:0, z:200 } });
@@ -119,6 +121,17 @@
                   color:0x00FF00,
                 },
               }, { poi_id: 'south' });
+
+							// add moon projection
+							awe.projections.add({
+							  id: 'moonPj',
+							  geometry: { shape:'sphere', radius:50 },
+							  material: { color:0xFFFFFF },
+							  texture: { path: '../../img/moon.jpg' },
+							},
+							{
+							  poi_id:'moonPOI',
+							});
 
               /* hiding the other projections
 
