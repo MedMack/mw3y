@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="container"></div>
-<script type="text/javascript" src="lib/js/awe-loader-min.js"></script>
+<script type="text/javascript" src="../../js/awe-loader-min.js"></script>
 <script type="text/javascript">
   window.addEventListener('load', function() {
     // initialize awe after page loads
@@ -47,9 +47,9 @@
           {
             capabilities: ['gum','gyro','webgl'],
             files: [
-              [ 'lib/js/awe-standard-dependencies.js', 'lib/js/awe-standard.js' ], // core dependencies for this app
-              'lib/js/awe-standard-window_resized.js', // window resize handling plugin
-              'lib/js/awe-standard-object_clicked.js', // object click/tap handling plugin
+              [ '../../js/awe-standard-dependencies.js', '../../js/awe-standard.js' ], // core dependencies for this app
+              '../../js/awe-standard-window_resized.js', // window resize handling plugin
+              '../../js/awe-standard-object_clicked.js', // object click/tap handling plugin
               'awe.geo_ar.js', // geo ar plugin
             ],
             success: function() {
@@ -79,46 +79,47 @@
                     animation: {
                       duration: 10,
                     },
-                    rotation:{ y: p.rotation.y+180, x: p.rotation.x+180 }
+                    rotation:{ y: p.rotation.y+360, x: p.rotation.x+0 }
                   },
                   where:{ id:e.detail.projection_id }
                 });
               }, false);
 
-			        // add some points of interest (poi) for each of the compass points
-			        awe.pois.add({ id:'north', position: { x:0, y:0, z:200 } });
-              awe.pois.add({ id:'south', position: { x:0, y:0, z:-200 } });
+							// add some points of interest (poi) for each of the compass points
+			        awe.pois.add({ id:'north', position: { x:20, y:100, z:200  } });
+              awe.pois.add({ id:'south', position: { x:15, y:150, z:-200 } });
+							// add moon POI
+							awe.pois.add({ id:'moonPOI', position: {x:90, y:1500, z:200 } });
 
-			        /* keeping only north and south
+			       
               awe.pois.add({ id:'north_east', position: { x:200, y:0, z:200 } });
 			        awe.pois.add({ id:'east', position: { x:200, y:0, z:0 } });
 			        awe.pois.add({ id:'south_east', position: { x:200, y:0, z:-200 } });
 			        awe.pois.add({ id:'south_west', position: { x:-200, y:0, z:-200 } });
 			        awe.pois.add({ id:'west', position: { x:-200, y:0, z:0 } });
 			        awe.pois.add({ id:'north_west', position: { x:-200, y:0, z:200 } });
-              */
+              
 
 
-			        // add projections to each of the pois
-			        awe.projections.add({
-			          id:'n',
-			          geometry:{ shape:'sphere', radius:20 },
-                //rotation:{ x:30, y:30, z:0 },
-			          material:{
-			            type: 'phong',
-			            color:0xFF0000,
-			          },
-			        }, { poi_id: 'north' });
+			       
 
-              awe.projections.add({
-                id:'s',
-                geometry:{ shape:'sphere', radius:20 },
-                //rotation:{ x:30, y:30, z:0 },
-                material:{
-                  type: 'phong',
-                  color:0x00FF00,
-                },
-              }, { poi_id: 'south' });
+        awe.projections.add({
+          id:'s',
+          geometry:{ shape:'cube', x:180, y:200, z:1 },
+          //rotation:{ x:30, y:30, z:0 },
+          material: { color:0xffffff },
+				  texture: { path: '../../img/1.png' },
+        }, { poi_id: 'south' });
+                
+             // add bd projection
+				awe.projections.add({
+				 id: 'moonPj',
+				 geometry: { shape:'cube', x:180, y:200, z:1 },
+				 material: { color:0xFFFFFF },
+				 texture: { path: '../../img/2.png' },
+				}, { poi_id:'north',});  
+
+							
 
               /* hiding the other projections
 
